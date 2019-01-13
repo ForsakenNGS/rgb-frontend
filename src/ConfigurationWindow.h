@@ -21,7 +21,10 @@ namespace Rgb {
 class ConfigurationWindow: public Window {
 protected:
 	DbusClient	configClient;
+	ToolButton*	toolLoad;
+	ToolButton*	toolSave;
 	ListBox*	listPorts;
+	ComboBox*	configActive;
 	ComboBox*	effectType;
 	SpinButton*	effectDuration;
 	Box*		effectColors;
@@ -35,12 +38,17 @@ public:
 	virtual ~ConfigurationWindow();
 	static ConfigurationWindow* create();
 
+	void onEepromLoad();
+	void onEepromSave();
+	void onConfigActiveChanged();
 	void onControllerSelected(ListBoxRow* controllerPort);
 	void onChangeCanceled();
 	void onChangeSaved();
 
+	void loadConfigurationActive();
 	void loadConfiguration();
 	void saveConfiguration();
+	void writeToEeprom();
 	void reload();
 };
 
